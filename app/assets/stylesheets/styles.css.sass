@@ -1,0 +1,259 @@
+$RED: #B8332A
+$ORANGE: #E4560C
+
+.group:after
+	content: ""
+	display: table
+	clear: both
+
+body
+	background: url('textures/cloth.png')
+
+.content
+	background: #FFF
+	background-clip: padding-box
+	border: 1px solid #c5c1b4
+	margin-bottom: 1em
+	border-radius: 4px
+	box-shadow: 0 2px 1px rgba(0,0,0,.04), inset 0 -1px 2px rgba(0,0,0,.05)
+
+form, form input
+	margin: 0 !important
+
+.button
+	margin: 0
+
+/* Navigation ---------------------------------------------------------------------------------- */
+#navigation
+	background: #000 url('textures/twinkle_twinkle.png')
+	margin-bottom: 20px
+
+.top-bar
+	background: transparent
+
+.top-bar-section ul
+	background: transparent
+
+.top-bar-section > ul > .divider
+	border-left: 0
+	border-right: 1px solid #444
+
+.top-bar-section li a:not(.button)
+	background: transparent
+	color: #999
+	font-size: emCalc(14px)
+	i
+		margin-right: 8px
+	&:hover
+		background: transparent
+		color: white
+
+.top-bar-section ul li.active a
+	background: rgba(0,0,0,0.25)
+	color: #FFF
+	&:hover
+		background: rgba(0,0,0,0.25)
+
+.top-bar .name h1 a
+	color: #999
+	font-family: "estilo-regular", "proxima-nova"
+	font-size: 24px
+	font-weight: 100
+	letter-spacing: -5px
+	padding: 0 20px 0 20px
+	text-shadow: 1px 1px 1px #000
+	&:hover
+		background: transparent
+		color: #FFF
+
+.top-bar-section .has-form
+	background: transparent
+
+.top-bar-section ul li > a.button
+	line-height: 1.9em
+	i
+		padding-right: 10px
+		position: relative
+		top: 1px
+
+.top-bar input, .top-bar .button
+	position: relative
+	top: 9px
+
+.top-bar-section .dropdown
+	background: #FFF
+
+/* Splash ----------------------------------------------------------------------------------- */
+#splash
+	background: #333 url('textures/denim.png')
+
+.splash-inner
+	background: rgba(0,0,0,0.1)
+	padding: 30px 0 50px
+
+.splash-logo
+	text-align: center
+	a
+		font-family: "estilo-regular", "proxima-nova"
+		color: #EEE
+		font-size: 100px
+		text-shadow: 2px 2px 2px #000
+	img
+		display: inline-block
+		margin: 0 20px
+		position: relative
+		bottom: 7px
+		width: 150px
+		vertical-align: middle
+
+.splash-tagline
+	color: #777
+	font-size: 23px
+	padding-top: 15px
+	text-align: center
+
+/* Table ------------------------------------------------------------------------------------- */
+table
+	font-size: 15px
+	margin: 0
+	width: 100%
+
+#current_batters, #current_pitchers
+	padding: 6px
+
+#draft_board
+	padding: 6px 0 6px 6px
+
+#right_column
+	padding: 6px 0 6px 10px
+
+table thead tr th
+	color: #4C4E43
+	text-align: center
+
+#draft_board table thead tr th, #current_batters table thead tr th, #current_pitchers table thead tr th
+	&:first-child
+		border-radius: 3px 0 0 0
+	&:last-child
+		border-radius: 0 3px 0 0
+
+#draft_board table thead tr th.player_type
+	text-align: left
+	a
+		background: #999
+		color: #FFF
+		display: inline-block
+		font-weight: 700
+		padding: 7px 19px
+	a.toggle_batters
+		border-radius: 2px 0 0 2px
+		border-right: 1px solid #FFF
+	a.toggle_pitchers
+		border-radius: 0 2px 2px 0
+	a.active
+		background: $ORANGE
+		color: #FFF
+
+
+table tbody tr td
+	text-align: center
+
+table tbody tr td.draft_player
+	font-weight: 700
+
+table tbody tr td.draft_player .button.small
+	padding-bottom: 0.4em
+	i
+		padding-right: 5px
+
+table tbody tr td.player_name
+	font-weight: 700
+	text-align: left
+	a
+		color: #444
+		span
+			color: #999
+			padding-left: 5px
+		i
+			color: #999
+			padding-right: 8px
+		&:hover
+			color: $ORANGE
+			span
+				color: $ORANGE
+			i
+				color: $ORANGE
+				padding-right: 8px
+
+table tbody tr td.player_name.player_selected
+	a, i, span
+		color: $ORANGE
+		&:hover
+			color: $RED
+			i, span
+				color: $RED
+
+table tbody tr td.baseball_blurb
+	font-size: 15px
+	line-height: 20px
+	padding: 20px
+	text-align: left
+
+table tbody tr td.remove_from_team
+	a
+		color: #AAA
+		&:hover
+			color: $RED
+
+table tbody tr td.remove_from_board
+	a
+		color: #AAA
+		&:hover
+			color: $RED
+
+/* Right Column -------------------------------------------------------------------------------- */
+#right_column
+	width: 300px
+
+#player_search
+	border-radius: 4px
+	margin-top: 0.4em
+	padding: 0.5em 0.6em
+
+/* New Team Form ------------------------------------------------------------------------------- */
+// #new_baseball_team
+// 	border-right: 1px solid #EEE
+// 	padding: 20px 30px
+
+// #new_baseball_team .team_name_field
+// 	margin-bottom: 10px
+
+// #new_baseball_team .position_field
+// 	display: inline-block
+// 	margin-right: 10px
+
+// #new_baseball_team .submit_button
+// 	margin: 1.3em 0 0
+// 	// float: right
+
+#user_credentials
+	margin: 20px 15px 20px 30px
+
+#user_credentials div
+	margin-bottom: 8px
+
+#user_team_credentials
+	margin: 20px 30px 20px 15px
+
+#user_team_credentials h1
+	margin-bottom: 0.9em
+
+// #user_team_credentials .team_name_field
+// 	margin-bottom: 10px
+
+#user_team_credentials .position_field
+	display: inline-block
+	margin-right: 10px
+
+#user_submit_button
+	padding: 10px 30px 20px

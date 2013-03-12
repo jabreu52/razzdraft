@@ -1,0 +1,8 @@
+if ( $('tr#<%= @player.id %>-blurb').length ) {
+	$('tr#<%= @player.id %>-blurb').remove();
+	$('tr#<%= @player.id %> td.player_name').removeClass('player_selected');
+} else {
+	$('tr#<%= @player.id %>').after('<%= j render partial: "blurb", locals: { player: @player } %>');
+	$('tr#<%= @player.id %> td.player_name').addClass('player_selected');
+}
+

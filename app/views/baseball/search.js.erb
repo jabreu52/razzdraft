@@ -1,0 +1,6 @@
+$('#draft_board').html('<%= j render partial: "baseball/draft_board", locals: {free_agents: @results} %>');
+<% if @search.blank? || params[:query].blank? %>
+	$('.toggle_batters').addClass('active');
+<% else %>
+	$('.toggle_batters,.toggle_pitchers').removeClass('active');
+<% end %>

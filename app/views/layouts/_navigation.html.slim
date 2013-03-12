@@ -1,0 +1,49 @@
+header#navigation
+	.row
+		.large-12.columns
+			nav.top-bar
+				/ ul.title-area
+				/ 	li.name
+				/ 		h1
+				/ 			= link_to "NN", root_path
+				/ 	li.toggle-topbar.menu-icon
+				/ 		= link_to "#" do
+				/ 			span
+				section.top-bar-section
+					ul.left
+						/ li.divider
+						/ li class=("active" if current_page? root_path)
+						/ 	= link_to root_path do
+						/ 		i.icon-user
+						/ 		| Users
+						/ li.divider
+						li.has-form style="padding: 0"
+							form
+								.row.collapse
+									/ .small-12.columns
+									/ 	input#player_search type="text" placeholder="Player Search"
+									/ .small-4.columns
+									/ 	a href="#" class="alert button" Search
+					ul.right
+						- if user_signed_in?
+							- if current_user.baseball_teams.present?
+								li.divider
+								li.has-dropdown
+									= link_to "#" do
+										i.icon-group
+										| Teams
+									ul.dropdown
+										- current_user.baseball_teams.each do |team|
+											li= link_to team.name, show_baseball_team_path(team.id)
+							li.divider
+							li.has-dropdown
+								= link_to "#" do
+									i.icon-cog
+								ul.dropdown
+									li= link_to "Logout", destroy_user_session_path, method: :delete
+							li.divider
+						- else
+							li
+								= link_to new_user_session_path do
+									i.icon-signin
+									| Login as Existing User

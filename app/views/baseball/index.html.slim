@@ -1,0 +1,62 @@
+= render "baseball/signup" unless user_signed_in?
+- if @team
+	.row
+		.large-6.columns
+			.content#current_batters
+				table
+					thead
+						tr
+							th width="20"
+							th width="20"
+							th width="200"
+							th width="20" R
+							th width="20" HR
+							th width="20" RBI
+							th width="20" SB
+							th width="20" AVG
+							th width="20" OBP
+					tbody
+						- @batting_roster.each do |method, abbrev|
+							- @team.send("drafted_#{method}").each do |projection|
+								= render "baseball/row_batter", locals: {abbrev: abbrev, projection: projection}
+							- (@team.send("#{method}_max") - @team.send("drafted_#{method}").length).times do
+								= render partial: "baseball/row_empty", locals: {abbrev: abbrev}
+						- if @team.batting_bench.present?
+							- @team.batting_bench.each do |projection|
+								= render "baseball/row_batter", locals: {abbrev: "BENCH", projection: projection}
+		.large-6.columns
+			.content#current_pitchers
+				table
+					thead
+						tr
+							th width="20"
+							th width="20"
+							th width="200"
+							th width="20" W
+							th width="20" L
+							th width="20" K
+							th width="20" SV
+							th width="20" ERA
+							th width="20" WHIP
+					tbody
+						- @pitching_roster.each do |method, abbrev|
+							- @team.send("drafted_#{method}").each do |projection|
+								= render "baseball/row_pitcher", locals: {abbrev: abbrev, projection: projection}
+							- if @team.pitching_bench.present?
+								- @team.pitching_bench.each do |p|
+									= render "baseball/row_pitcher", locals: {abbrev: "BENCH", projection: p}
+							- (@team.send("#{method}_max") - @team.send("drafted_#{method}").length).times do
+								= render partial: "baseball/row_empty", locals: {abbrev: abbrev}
+
+.row
+	.large-12.columns
+		.content
+			.row
+				.large-8.columns
+					#draft_board
+						= render partial: "draft_board", locals: {free_agents: @free_agents}
+				.large-4.columns
+					#right_column
+						/ .small-12.columns
+						input#player_search type="text" placeholder="Player Search"
+						img src="http://placehold.it/300x250"

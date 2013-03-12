@@ -1,0 +1,78 @@
+.row
+	.large-12.columns
+		.content
+			.row
+				= form_for @user do |f|
+					.large-4.columns
+						#user_credentials
+							h1 1. Sign Up
+							div
+								= f.label :username
+								= f.text_field :username
+							div
+								= f.label :email
+								= f.text_field :email
+							div
+								= f.label :password
+								= f.password_field :password
+					.large-8.columns
+						#user_team_credentials
+							h1 2. League Details
+							= f.fields_for :baseball_teams do |t|
+								/ .team_name_field
+								/ 	= t.label :name, "Team Name"
+								/ 	= t.text_field :name
+								.position_field
+									= t.label :catchers_max, "C"
+									= t.select :catchers_max, 1..2
+								.position_field
+									= t.label :first_basemen_max, "1B"
+									= t.select :first_basemen_max, 1..2
+								.position_field
+									= t.label :second_basemen_max, "2B"
+									= t.select :second_basemen_max, 1..2
+								.position_field
+									= t.label :shortstops_max, "SS"
+									= t.select :shortstops_max, 1..2
+								.position_field
+									= t.label :third_basemen_max, "3B"
+									= t.select :third_basemen_max, 1..2
+								.position_field
+									= t.label :outfielders_max, "OF"
+									= t.select :outfielders_max, 3..6
+								.position_field
+									= t.label :utility_men_max, "UTIL"
+									= t.select :utility_men_max, 0..4, {selected: 2}
+								.position_field
+									= t.label :designated_hitters_max, "DH"
+									= t.select :designated_hitters_max, 0..2
+								.position_field
+									= t.label :middle_infielders_max, "MI"
+									= t.select :middle_infielders_max, 0..2
+								.position_field
+									= t.label :corner_infielders_max, "CI"
+									= t.select :corner_infielders_max, 0..2
+								BR
+								.position_field
+									= t.label :starting_pitchers_max, "SP"
+									= t.select :starting_pitchers_max, 0..4, {selected: 2}
+								.position_field
+									= t.label :relief_pitchers_max, "RP"
+									= t.select :relief_pitchers_max, 0..4, {selected: 2}
+								.position_field
+									= t.label :pitchers_max, "P"
+									= t.select :pitchers_max, 3..9
+								.position_field
+									= t.label :bench_max, "BENCH"
+									= t.select :bench_max, 0..9, {selected: 4}
+								.position_field
+									= t.label :league_type, "LEAGUE"
+									= t.select :league_type, [["Yahoo", "yahoo"], ["ESPN", "espn"]]
+								.position_field
+									= t.label :league_size, "TEAMS"
+									= t.select :league_size, [10,12,14,15,16], {selected: 12}
+					.row
+						.large-12.columns
+							#user_submit_button
+								.submit_button
+									= f.submit "Sign Up and Start Drafting", class: "radius button large expand"

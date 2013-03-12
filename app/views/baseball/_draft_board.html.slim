@@ -1,0 +1,40 @@
+table
+	thead
+		tr
+			th.player_type width="315" colspan="2"
+				= link_to root_path(b: true), class: "toggle_batters #{batters? ? 'active' : nil}" do
+					| Batters
+				= link_to root_path(b: false), class: "toggle_pitchers #{pitchers? ? 'active' : nil}" do
+					| Pitchers
+			th width="40"
+				i.icon-signal
+			th width="40"= pitchers? ? "W" : "R"
+			th width="40"= pitchers? ? "L" : "HR"
+			th width="40"= pitchers? ? "K" : "RBI"
+			th width="36"= pitchers? ? "SV" : "SB"
+			th width="50"= pitchers? ? "ERA" : "AVG"
+			th width="50"= pitchers? ? "WHIP" : "OBP"
+			th width="28"
+	tbody
+		- free_agents.each do |player|
+			tr id="#{player.id}"
+				td.draft_player width="88"
+					= link_to root_path, class: "small radius button" do
+						i.icon-plus
+						| Draft
+
+				td.player_name width="227"
+					= link_to baseball_projection_path(player), remote: true do
+						i.icon-file-alt
+						= player.name
+						span= player.yahoo_positions.join(",")
+				td= player.rank
+				td= pitchers? ? player.w : player.r
+				td= pitchers? ? player.l : player.hr
+				td= pitchers? ? player.k : player.rbi
+				td= pitchers? ? player.sv : player.sb
+				td= pitchers? ? player.era_fixed : player.avg_fixed
+				td= pitchers? ? player.whip_fixed : player.obp_fixed
+				td.remove_from_board
+					= link_to root_path do
+						i.icon-remove
