@@ -1,5 +1,5 @@
 class BaseballController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:index, :show, :search]
+  # skip_before_filter :authenticate_user!, only: [:index, :show, :search]
 
   def index
     @free_agents = BaseballProjection.where(batter: params[:b] == 'false' ? false : true).order_by(:rank.asc)
