@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
+#= require sorttable
 
 jQuery ->
 	$(document).foundation()

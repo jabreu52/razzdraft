@@ -6,9 +6,6 @@ class BaseballController < ApplicationController
 
     if user_signed_in?
       @team = params[:id] ? BaseballTeam.find(params[:id]) : current_user.baseball_teams.last
-      # @team.catchers << BaseballProjection.all.sample
-      # @free_agents = @free_agents.not_in(@team.baseball_projection_ids)
-
       @batting_roster = {"catchers" => "C", "first_basemen" => "1B", "second_basemen" => "2B", "shortstops" => "SS", "third_basemen" => "3B",
         "outfielders" => "OF", "utility_men" => "UTIL", "middle_infielders" => "MI", "corner_infielders" => "CI"}
       @pitching_roster = {"starting_pitchers" => "SP", "relief_pitchers" => "RP", "pitchers" => "P", "bench" => "BENCH"}
@@ -20,11 +17,13 @@ class BaseballController < ApplicationController
 
   def show
   	@player = BaseballProjection.find(params[:id])
-
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def sort
   end
 
   def search

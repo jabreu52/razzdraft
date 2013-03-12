@@ -3,11 +3,12 @@ Razzdraft::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
   resources :users
-  match '/:id' => 'baseball#index', as: "show_baseball_team"
+  match '/:id' => 'baseball#index', as: 'show_baseball_team'
   match 'baseball_projections/search' => 'baseball#search'
+  match 'baseball/sort' => 'baseball#sort', as: 'sort'
   resources :baseball_projections, controller: 'baseball'
   # resources :baseball_teams
-  root to: "baseball#index"
+  root to: 'baseball#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -56,11 +57,11 @@ Razzdraft::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

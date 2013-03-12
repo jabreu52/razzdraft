@@ -1,28 +1,27 @@
-table
+table.sortable
 	thead
 		tr
-			th.player_type width="315" colspan="2"
+			th.player_type.sorttable_nosort
 				= link_to root_path(b: true), class: "toggle_batters #{batters? ? 'active' : nil}" do
-					| Batters
+					| BATTERS
+				span &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 				= link_to root_path(b: false), class: "toggle_pitchers #{pitchers? ? 'active' : nil}" do
-					| Pitchers
+					| PITCHERS
+			/ BATTERS | PITCHERS
 			th width="40"
 				i.icon-signal
-			th width="40"= pitchers? ? "W" : "R"
+			th.sorttable_descending width="40"= pitchers? ? "W" : "R"
 			th width="40"= pitchers? ? "L" : "HR"
-			th width="40"= pitchers? ? "K" : "RBI"
-			th width="36"= pitchers? ? "SV" : "SB"
+			th.sorttable_descending width="40"= pitchers? ? "K" : "RBI"
+			th.sorttable_descending width="36"= pitchers? ? "SV" : "SB"
 			th width="50"= pitchers? ? "ERA" : "AVG"
 			th width="50"= pitchers? ? "WHIP" : "OBP"
-			th width="28"
+			- if user_signed_in?
+				th.sorttable_nosort
+				th.sorttable_nosort width="28"
 	tbody
 		- free_agents.each do |player|
 			tr id="#{player.id}"
-				td.draft_player width="88"
-					= link_to root_path, class: "small radius button" do
-						i.icon-plus
-						| Draft
-
 				td.player_name width="227"
 					= link_to baseball_projection_path(player), remote: true do
 						i.icon-file-alt
@@ -35,6 +34,11 @@ table
 				td= pitchers? ? player.sv : player.sb
 				td= pitchers? ? player.era_fixed : player.avg_fixed
 				td= pitchers? ? player.whip_fixed : player.obp_fixed
-				td.remove_from_board
-					= link_to root_path do
-						i.icon-remove
+				- if user_signed_in?
+					td.draft_player width="88"
+						= link_to root_path, class: "small radius button" do
+							i.icon-plus
+							| Draft
+					td.remove_from_board
+						= link_to root_path do
+							i.icon-remove

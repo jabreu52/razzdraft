@@ -129,46 +129,95 @@ table
 
 table thead tr th
 	color: #4C4E43
+	padding: 0.625em
 	text-align: center
-
-#draft_board table thead tr th, #current_batters table thead tr th, #current_pitchers table thead tr th
-	&:first-child
-		border-radius: 3px 0 0 0
-	&:last-child
-		border-radius: 0 3px 0 0
+	&:hover
+		color: $ORANGE
+		cursor: pointer
 
 #draft_board table thead tr th.player_type
 	text-align: left
+	padding-left: 15px
+	span
+		color: #BBB
 	a
-		background: #999
-		color: #FFF
-		display: inline-block
-		font-weight: 700
-		padding: 7px 19px
-	a.toggle_batters
-		border-radius: 2px 0 0 2px
-		border-right: 1px solid #FFF
-	a.toggle_pitchers
-		border-radius: 0 2px 2px 0
+		color: #999
+		&:hover
+			color: #555
 	a.active
-		background: $ORANGE
-		color: #FFF
+		color: $ORANGE
+		&:hover
+			color: $RED
 
+#draft_board table thead tr th.sorttable_nosort
+	&:hover
+		cursor: default
+
+#draft_board table thead tr th, #current_batters table thead tr th, #current_pitchers table thead tr th
+	&:first-child
+		border-radius: 300px 0 0 300px
+	&:last-child
+		border-radius: 0 300px 300px 0
+
+// #draft_board table thead tr th.toggle_batters, #draft_board table thead tr th.toggle_pitchers
+// 	padding: 0.8em 0
+// 	a
+// 		background: #999
+// 		border-radius: 4px
+// 		color: #FFF
+// 		padding: 0.4em 1em
+// 		&:hover
+// 			background: #999
+// 			color: #FFF
+// 	a.active
+// 		background: $ORANGE
+// 		color: #FFF
+
+// #draft_board table thead tr th.toggle_pitchers
+// 	position: relative
+// 	right: 5px
+
+// #draft_board table thead tr th.toggle_pitchers
+// 	text-align: left
+// 	padding: 0
+// 	position: absolute
+// 	left: 15px
+// 	// text-align: left
+// 	a
+// 		background: #999
+// 		border: 1px solid #FFF
+// 		color: #FFF
+// 		display: inline-block
+// 		font-weight: 700
+// 		text-align: center
+// 		// padding: 5% 20%
+// 		width: 50%
+// 	a.toggle_batters
+// 		border-radius: 4px 0 0 4px
+// 		border-right: 0
+// 	a.toggle_pitchers
+// 		border-radius: 0 4px 4px 0
+// 	a.active
+// 		background: $ORANGE
+// 		color: #FFF
 
 table tbody tr td
 	text-align: center
 
-table tbody tr td.draft_player
+#draft_board table tbody tr td.draft_player
 	font-weight: 700
 
-table tbody tr td.draft_player .button.small
+#draft_board table tbody tr td.draft_player .button.small
 	padding-bottom: 0.4em
 	i
 		padding-right: 5px
 
-table tbody tr td.player_name
+#draft_board table tbody tr td.player_name
 	font-weight: 700
+	padding-top: 10px
+	padding-bottom: 10px
 	text-align: left
+
 	a
 		color: #444
 		span
@@ -176,7 +225,7 @@ table tbody tr td.player_name
 			padding-left: 5px
 		i
 			color: #999
-			padding-right: 8px
+			padding: 0 8px
 		&:hover
 			color: $ORANGE
 			span
@@ -185,7 +234,7 @@ table tbody tr td.player_name
 				color: $ORANGE
 				padding-right: 8px
 
-table tbody tr td.player_name.player_selected
+#draft_board table tbody tr td.player_name.player_selected
 	a, i, span
 		color: $ORANGE
 		&:hover
@@ -193,7 +242,7 @@ table tbody tr td.player_name.player_selected
 			i, span
 				color: $RED
 
-table tbody tr td.baseball_blurb
+#draft_board table tbody tr td.baseball_blurb
 	font-size: 15px
 	line-height: 20px
 	padding: 20px
@@ -203,17 +252,19 @@ table tbody tr td.baseball_blurb
 		&:hover
 			color: $ORANGE
 
+#draft_board table tbody tr td.remove_from_board
+	a
+		color: #AAA
+		font-size: 16px
+		&:hover
+			color: $RED
+
 table tbody tr td.remove_from_team
 	a
 		color: #AAA
 		&:hover
 			color: $RED
 
-table tbody tr td.remove_from_board
-	a
-		color: #AAA
-		&:hover
-			color: $RED
 
 /* Right Column -------------------------------------------------------------------------------- */
 #right_column
@@ -221,8 +272,9 @@ table tbody tr td.remove_from_board
 
 #player_search
 	border-radius: 4px
-	margin-top: 0.4em
+	margin: 0.4em 0 0.8em
 	padding: 0.5em 0.6em
+
 
 /* New Team Form ------------------------------------------------------------------------------- */
 // #new_baseball_team
