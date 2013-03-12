@@ -26,7 +26,7 @@ table.sortable
 					= link_to baseball_projection_path(player), remote: true do
 						i.icon-file-alt
 						= player.name
-						span= player.send("#{@team.league_type}_positions").join(",")
+						span= player.send("#{@team ? @team.league_type : 'yahoo'}_positions").join(",")
 				td= player.rank
 				td= pitchers? ? player.w : player.r
 				td= pitchers? ? player.l : player.hr
