@@ -7,7 +7,6 @@
 					thead
 						tr
 							th width="20"
-							th width="20"
 							th width="200"
 							th width="20" R
 							th width="20" HR
@@ -15,6 +14,7 @@
 							th width="20" SB
 							th width="20" AVG
 							th width="20" OBP
+							th width="20"
 					tbody
 						- @batting_roster.each do |method, abbrev|
 							- @team.send("drafted_#{method}").each do |projection|
@@ -30,7 +30,6 @@
 					thead
 						tr
 							th width="20"
-							th width="20"
 							th width="200"
 							th width="20" W
 							th width="20" L
@@ -38,6 +37,7 @@
 							th width="20" SV
 							th width="20" ERA
 							th width="20" WHIP
+							th width="20"
 					tbody
 						- @pitching_roster.each do |method, abbrev|
 							- @team.send("drafted_#{method}").each do |projection|
