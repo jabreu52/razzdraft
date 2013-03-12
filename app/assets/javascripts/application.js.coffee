@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require vendor/zepto
 #= require foundation
 #= require sorttable
 

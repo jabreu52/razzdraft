@@ -11,7 +11,7 @@ table.sortable
 			th width="40"
 				i.icon-signal
 			th.sorttable_descending width="40"= pitchers? ? "W" : "R"
-			th width="40"= pitchers? ? "L" : "HR"
+			th class=("sorttable_descending" unless pitchers?) width="40"= pitchers? ? "L" : "HR"
 			th.sorttable_descending width="40"= pitchers? ? "K" : "RBI"
 			th.sorttable_descending width="36"= pitchers? ? "SV" : "SB"
 			th width="50"= pitchers? ? "ERA" : "AVG"
@@ -26,7 +26,7 @@ table.sortable
 					= link_to baseball_projection_path(player), remote: true do
 						i.icon-file-alt
 						= player.name
-						span= player.yahoo_positions.join(",")
+						span= player.send("#{@team.league_type}_positions").join(",")
 				td= player.rank
 				td= pitchers? ? player.w : player.r
 				td= pitchers? ? player.l : player.hr
@@ -36,9 +36,16 @@ table.sortable
 				td= pitchers? ? player.whip_fixed : player.obp_fixed
 				- if user_signed_in?
 					td.draft_player width="88"
-						= link_to root_path, class: "small radius button" do
-							i.icon-plus
-							| Draft
+						- if player.send("#{@team.league_type}_positions").length <= 1
+							= link_to root_path, class: "small radius button" do
+								i.icon-plus
+								| Draft
+						- else
+							a href="#" data-dropdown="drop_#{player.id}" class="small radius button dropdown"
+								span style="text-align: right" Draft
+							ul id="drop_#{player.id}" class="f-dropdown"
+								- player.send("#{@team.league_type}_positions").each do |position|
+									li= link_to position, root_path, disable_with: "Drafting..."
 					td.remove_from_board
 						= link_to root_path do
 							i.icon-remove

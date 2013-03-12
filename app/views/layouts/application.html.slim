@@ -14,7 +14,7 @@ head
 	= javascript_include_tag "//use.typekit.com/ier1ulg.js", "vendor/custom.modernizr"
 	= csrf_meta_tag
 	javascript:
-		try{Typekit.load()}catch(e){}
+		try{Typekit.load()}catch(e){};
 body
 	= render "layouts/splash" unless user_signed_in?
 	= render "layouts/navigation"
